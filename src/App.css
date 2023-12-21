@@ -1,0 +1,117 @@
+.data{
+    width: 80%;
+    margin: auto;
+    /* background-color: bisque; */
+    /* height: auto; */
+}
+
+.crousel{
+    width: 50%;
+    margin: 50px auto;
+}
+.photo{ 
+    height: 18vh;
+    width: 100%; 
+    /* background: linear-gradient(34deg, black, transparent); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: beige;
+} 
+
+/* .photo::before {
+    content: "";
+    background: url(https://images.pexels.com/photos/996329/pexels-photo-996329.jpeg?cs=srgb&dl=pexels-kai-pilger-996329.jpg&fm=jpg);
+    position: absolute;
+    top: auto;
+    left: 0;
+    z-index: -1;
+    opacity: 0.7;
+    height: 60%;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+} */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+.wrapper{
+  display: flex;
+}
+.wrapper .static-txt{
+  color: black;
+  font-size: 60px;
+  font-weight: 400;
+}
+.wrapper .dynamic-txts{
+  margin-left: 15px;
+  height: 90px;
+  line-height: 90px;
+  overflow: hidden;
+}
+.dynamic-txts li{
+  list-style: none;
+  color: crimson;
+  font-size: 60px;
+  font-weight: 500;
+  position: relative;
+  top: 0;
+  animation: slide 12s steps(4) infinite;
+}
+@keyframes slide {
+  100%{
+    top: -360px;
+  }
+}
+.dynamic-txts li span{
+  position: relative;
+  margin: 5px 0;
+  line-height: 90px;
+}
+.dynamic-txts li span::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: beige;
+  border-left: 2px solid crimson;
+  animation: typing 3s steps(10) infinite;
+}
+@keyframes typing {
+  40%, 60%{
+    left: calc(100% + 30px);
+  }
+  100%{
+    left: 0;
+  }
+}
+.photo2{
+    height: 60vh;
+    width: 100%;
+    background-color: teal;
+    display: flex;
+}
+.child,.child2{
+    height: 100%;
+    width: 100%;
+}
+
+.a{
+    height: 70%;
+    width: 30%;
+  }
+.a > img{
+    height: 100%;
+    width: 100%;
+}
+
+
+/* <div className='photo'>
+<div className="wrapper">
+  <div className="static-txt">Welcome To</div>
+  <ul className="dynamic-txts">
+    <li><span>Our Shop</span></li>
+    <li><span>Our Mall</span></li>
+  </ul>
+</div>
+</div> */
