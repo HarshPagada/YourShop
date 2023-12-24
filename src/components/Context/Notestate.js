@@ -12,7 +12,7 @@ function Notestate(props) {
     const [products, setProducts] = useState(productinitial);
 
     // ADD product
-    const addProduct = async (title, brand, description, quantity, price) => {
+    const addProduct = async (title, brand, description, quantity, price, image) => {
         try {
             const response = await fetch(`${host}/api/product2/create`, {
                 method: "POST",
@@ -27,7 +27,7 @@ function Notestate(props) {
             }
 
             const product = await response.json();
-            setProducts(products.concat(product))
+            setProducts(products.concat({...product, image}))
             console.log(json)
         } catch (error) {
             console.error("Fetch error:", error);
@@ -53,7 +53,8 @@ function Notestate(props) {
     }
 
     // Update product
-    const updateProduct = async (id, title, brand, description, quantity, price) => {
+
+    const updateProduct = async (id, title, brand, description, quantity, price, image) => {
 
         const response = await fetch(`${host}/api/product2/update/${id}`, {
             method: "PUT",
@@ -75,11 +76,13 @@ function Notestate(props) {
                 newProducts[index].description = description;
                 newProducts[index].quantity = quantity;
                 newProducts[index].price = price;
+                newProducts[index].image = image;
                 break;
             }
         }
         setProducts(newProducts)
     }
+    
 
     // DELETE product
     const deleteProduct = async (id) => {
@@ -93,36 +96,12 @@ function Notestate(props) {
         const json = await response.json();
         console.log(json)
 
-        console.log("deleted product is : " + id)
+        // console.log("deleted product is : " + id)
         const newProducts = products.filter((product) => {
             return product._id !== id
         })
         setProducts(newProducts)
     }
-
-//     // Frontend (React)
-
-// const handleImageUpload = async (file) => {
-//     const formData = new FormData();
-//     formData.append('image', file);
-  
-//     try {
-//       const response = await fetch('http://localhost:3001/upload', {
-//         method: 'POST',
-//         body: formData,
-//       });
-  
-//       if (response.ok) {
-//         const result = await response.json();
-//         console.log('Image uploaded successfully:', result.imagePath);
-//       } else {
-//         console.error('Failed to upload image');
-//       }
-//     } catch (error) {
-//       console.error('Error uploading image:', error.message);
-//     }
-//   };
-  
   
     return (
         <Notecontext.Provider value={{ products, addProduct, getallProducts, updateProduct, deleteProduct,}}>

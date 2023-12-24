@@ -16,12 +16,6 @@ export default function navbar() {
           <Link className="nav-link active text-white" aria-current="page" to="/Home">Home</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link text-white" to="/Product">Added Product</Link>
-        </li>
-        {/* <li className="nav-item">
-          <Link className="nav-link text-white" to="/Storage">Storage</Link>
-        </li> */}
-        <li className="nav-item">
           <Link className="nav-link text-white" to="/Form">Location/Contact US</Link>
         </li>
       </ul>

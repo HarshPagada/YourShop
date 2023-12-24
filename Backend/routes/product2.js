@@ -6,15 +6,15 @@ const mongoose = require('mongoose')
 // Route : 1  Create a new product (without user authentication) "api/product2/create"
 router.post('/create', async (req, res) => {
   try {
-    const { brand, title, description, quantity,price } = req.body;
+    const { title,brand, description, quantity,price } = req.body;
 
     
-    if (!brand || !title || !description || quantity < 0 || price < 0) {
+    if (!title || !brand || !description || quantity < 0 || price < 0) {
       return res.status(400).json({ error: 'Invalid data provided' });
     }
     const newProduct = new product({
-      brand,
       title,
+      brand,
       description,
       quantity,
       price
@@ -49,7 +49,7 @@ router.get('/read', async (req, res) => {
 router.put('/update/:id', async (req, res) => {
     try {
       const productId = req.params.id;
-      const { brand, title, description, quantity, price } = req.body;
+      const { title,brand, description, quantity, price } = req.body;
   
       // Check if the product ID is provided
       if (!productId) {
@@ -64,7 +64,7 @@ router.put('/update/:id', async (req, res) => {
       // Find the product by ID and update its properties
       const updatedProduct = await product.findByIdAndUpdate(
         productId,
-        { brand, title, description, quantity,price },
+        {title, brand, description, quantity,price },
         { new: true } // Return the updated document
       );
   
@@ -72,8 +72,8 @@ router.put('/update/:id', async (req, res) => {
       if (!updatedProduct) {
         return res.status(404).json({ error: 'Product not found' });
       }
-  
       res.json(updatedProduct);
+      
     } catch (error) {
       console.error('Error while updating product:', error);
       res.status(500).send('Internal server error');

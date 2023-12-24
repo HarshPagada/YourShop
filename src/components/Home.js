@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react'
 import Notecontext from './Context/Notecontext';
+import Updatepro from '../components/Updatepro';
 
 export default function Home() {
 
   const context = useContext(Notecontext)
-  const { addProduct,} = context;
+  const { addProduct, } = context;
 
   const [product, setProduct] = useState({
     title: "",
@@ -15,7 +16,7 @@ export default function Home() {
     price: "",
   });
 
-  const handleclick =(e) => {
+  const handleclick = (e) => {
     e.preventDefault();
     addProduct(product.title, product.brand, product.description, product.quantity, product.price, product.image)
     setProduct({ title: "", brand: "", image: null, description: "", quantity: "", price: "", })
@@ -27,11 +28,21 @@ export default function Home() {
   };
 
   const onChangenext = (e) => {
-     const file = e.target.files[0];
-     console.log(file)
-     setProduct({ ...product, image: file })
+    const file = e.target.files[0];
+    console.log(file)
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+       
+        const base64String = reader.result;
+        setProduct({ ...product, image: base64String });
+      };
+      reader.readAsDataURL(file);
+    }
   };
-  
+
   return (
     <>
       <div className='container my-4'>
@@ -47,7 +58,7 @@ export default function Home() {
           </div>
           <div className="col-md-6">
             <label htmlFor="image" className="form-label">Upload Image</label>
-            <input type="file"  onChange={onChangenext}className="form-control" name="image" id="image" />
+            <input type="file" onChange={onChangenext} className="form-control" name="image" id="image" />
           </div>
           <div className="col-12">
             <label htmlFor="description" className="form-label">Description</label>
@@ -65,6 +76,11 @@ export default function Home() {
             <button type="submit" className="btn btn-primary">Create</button>
           </div>
         </form>
+      </div>
+
+      <div className='container'>
+        <h2>Your Added Product</h2>
+        <Updatepro />
       </div>
     </>
   )

@@ -10,11 +10,11 @@ const ProductsSchema = new Schema({
     //     type: Number,
     //     required: true
     // },
-    brand: {
+    title: {
         type: String,
         required: true
     },
-    title: {
+    brand: {
         type: String,
         required: true
     },

@@ -8,21 +8,19 @@ function Gps() {
 
     useEffect(() => {
         const getUserCoords = () => {
-            window.navigator.geolocation.watchPosition(userCoords, handleError);
+            window.navigator.geolocation.getCurrentPosition(userCoords, handleError);
         };
 
         const userCoords = (position) => {
-            const userlatitude = position.coords.latitude;
-            const userlongitude = position.coords.longitude;
-            console.log("latitude", userlatitude)
-            console.log("longitude", userlongitude)
-
             setInterval(() => {
+                const userlatitude = position.coords.latitude;
+                const userlongitude = position.coords.longitude;
+                // console.log("latitude", userlatitude)
+                // console.log("longitude", userlongitude)
                 setLatitude(userlatitude);
                 setLongitude(userlongitude);
             }, 1000);
 
-            // a()
 
         };
 
@@ -56,13 +54,13 @@ function Gps() {
     return (
         <div>
             <h1>Current Location</h1>
-            <hr/>
+            <hr />
             <h3>latitude:-{latitude}</h3>
             <h3>longitude:-{longitude}</h3>
             <h3>User Address:-{userAddress} </h3>
-            <hr/>
+            <hr />
             <button className='btn btn-primary' onClick={getuseraddress}>Get Address</button>
-            <p className='text-center my-3'>first of all on GPS of your mobile and visit this website and accept request then click on Get address button.  </p>
+            <p className='text-center my-3'>first of all on GPS of your mobile and visit this website and accept request then click on Get address button you will get address.  </p>
         </div>
     )
 }
