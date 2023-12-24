@@ -6,6 +6,8 @@ function Gps() {
     const [longitude, setLongitude] = useState();
     const [userAddress, setuserAddress] = useState();
 
+    const apiKey = process.env.REACT_app
+
     useEffect(() => {
         const getUserCoords = () => {
             window.navigator.geolocation.getCurrentPosition(userCoords, handleError);
@@ -33,7 +35,7 @@ function Gps() {
 
     const userAddressApi = async () => {
         try {
-            const url = `https://api.opencagedata.com/geocode/v1/json?key=3e82471df0fb45dd80587bbf42722371&q=${latitude}%2C+${longitude}&pretty=1&no_annotations=1`;
+            const url = `https://api.opencagedata.com/geocode/v1/json?key=${apiKey}&q=${latitude}%2C+${longitude}&pretty=1&no_annotations=1`;
             const loc = await fetch(url);
             const data = await loc.json();
 
