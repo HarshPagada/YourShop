@@ -12,9 +12,7 @@ export default function Form() {
     }
 
     return (
-
         <>
-
             <div className='container my-4'>
                 <Gps />
             </div>

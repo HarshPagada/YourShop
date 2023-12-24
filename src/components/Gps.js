@@ -6,7 +6,7 @@ function Gps() {
     const [longitude, setLongitude] = useState();
     const [userAddress, setuserAddress] = useState();
 
-    const apiKey = process.env.REACT_app
+    const apiKey = process.env.REACT_APP_API_KEY
 
     useEffect(() => {
         const getUserCoords = () => {

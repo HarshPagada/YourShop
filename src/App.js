@@ -15,7 +15,6 @@ import Notestate from './components/Context/Notestate';
 
 const App = () => {
 
-
   return (
     <>
       <Notestate>
