@@ -30,4 +30,7 @@ const App = () => {
   );
 };
 
+// If the `str` contains more `a` than `b` / there are unmatched pairs, the first match that was closed will be used. For example, `{{ '{{a' | escape }}` will match `['{', 'a', '']` and `{{ '{a}}' | escape }}` will match `['', 'a', '}']`.
+
+
 export default App;
